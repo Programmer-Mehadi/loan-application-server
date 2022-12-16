@@ -21,6 +21,10 @@ async function fun() {
         app.get('/', (req, res) => {
             res.send(`Server running: ${port}`);
         })
+        app.get('/list',async (req, res) => {
+            const result = await applicationCollections.find().toArray();
+            res.send(result);
+        })
         app.post('/addapplication',async (req, res) => {
             const data  = req.body
             const result = await applicationCollections.insertOne(data);
